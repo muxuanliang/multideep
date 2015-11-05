@@ -13,14 +13,14 @@ datage.data=datage.data';
 datame.data=datame.data';
 
 %%%%%%%%%%%%%%%%%%%%%%%%%% Modality for RNA Data %%%%%%%%%%%%%%%%%%%%%%%%%%
-[W1,a1,b1,hs1,h1,d1,dd1]=rbm(datarna.data,40,10,0.0005,1,80000,0,0);
+[W1,a1,b1,hs1,h1,d1,dd1]=rbm(datarna.data,40,10,0.0005,1,80000,0.1,0.1);
 
 %%%%%%%%%%%%%%%%%%%%%%%%%% Modelity for GE Data %%%%%%%%%%%%%%%%%%%%%%%%%%%
-[W2,a2,b2,hs2,h2,d2,dd2]=rbm(datage.data,400,1,0.0005,1,8000,0,0);
+[W2,a2,b2,hs2,h2,d2,dd2]=rbm(datage.data,400,1,0.0005,1,8000,1,1);
 [err21,h21,WW1]=rbmtop(h2',40,800,1);
 
 %%%%%%%%%%%%%%%%%%%%%%%%%% Modelity for ME Data %%%%%%%%%%%%%%%%%%%%%%%%%%%
-[W3,a3,b3,hs3,h3,d3,dd3]=rbm(datame.data,400,1,0.0005,1,8000,0,0);
+[W3,a3,b3,hs3,h3,d3,dd3]=rbm(datame.data,400,1,0.0005,1,8000,1,1);
 [err31,h31,WW2]=rbmtop(h3',40,800,1);
 
 
