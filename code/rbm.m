@@ -1,4 +1,4 @@
-function [W,a,b,hs,h,d,d1] = rbm(data1,nh,nCD,nstep,nbat,maxepoch,lamda1,lamda2)
+function [W,a,b,hs,h,d,d1] = rbm(data1,nh,nCD,nstep,nbat,maxepoch,lamda1,lamda2,scale)
 %RBM is the training function for gaussian visible layer and binary hidden
 %layer rbm
 %each column represents data of single person
@@ -15,7 +15,7 @@ d1=zeros(maxepoch,1);
 d1(1)=norm(W);
 erro = st;
 i=1;
-while (i<= maxepoch) && (erro>0.001*st)
+while (i<= maxepoch) && (erro>scale*st)
 fprintf(1, 'epoch %4i ', i); 
 [W1,a,b,erro]=TDBN1(data1,nh,W,a,b,nCD,nstep,nbat,lamda1,lamda2);
 d(i)=norm(W1-W);
