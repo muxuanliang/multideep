@@ -1,4 +1,4 @@
-function [W,a,b]=TDBN1(data,nh,Win,ain,bin,nCD,step,nbat,lamda1,lamda2)
+function [W,a,b,erro]=TDBN1(data,nh,Win,ain,bin,nCD,step,nbat,lamda1,lamda2)
 
 %%%%%%%%% Gaussian-binary RBM updates program %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%% Data Represented by Column %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -33,10 +33,12 @@ end
 W=W-hpp*vs';
 a=a-sum(vs,2);
 b=b-sum(hpp,2);
-%W=((1-2*step*lamda2).*Win+step/nbat*W)./(1+2*step*lamda1./abs(Win));
-W=((1-2*step*lamda2).*Win+step/nbat*W);
+W=((1-2*step*lamda2).*Win+step/nbat*W)./(1+2*step*lamda1./abs(Win));
+%W=((1-2*step*lamda2).*Win+step/nbat*W);
 a=ain+step/nbat*a;
 b=bin+step/nbat*b;
+erro = sum((data-(W'*hpp+repmat(a,1,nbat))).^2)/a2;
+fprintf(1, 'error %12.8f  \n', erro);
 %%%%%%%%%%%%%%%% END OF UPDATES %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 end
 
