@@ -37,8 +37,7 @@ W=((1-2*step*lamda2).*Win+step/nbat*W)./(1+2*step*lamda1./abs(Win));
 %W=((1-2*step*lamda2).*Win+step/nbat*W);
 a=ain+step/nbat*a;
 b=bin+step/nbat*b;
-erro = sum((data-(W'*hpp+repmat(a,1,nbat))).^2)/a2;
-fprintf(1, 'error %12.8f  \n', erro);
+erro = sum(sum((data'-(W'*hpp+repmat(a,1,nbat))').^2))/a2;
 %%%%%%%%%%%%%%%% END OF UPDATES %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 end
 
